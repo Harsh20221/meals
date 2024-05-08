@@ -9,7 +9,7 @@ class CategoryGridItem extends StatelessWidget {
 
   ///! Make sure to write override's starting letter in small not capital
   Widget build(BuildContext context) {
-    return Container(
+    return Container( padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
         category.color.withOpacity(0.55),
