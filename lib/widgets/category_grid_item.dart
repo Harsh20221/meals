@@ -9,13 +9,14 @@ class CategoryGridItem extends StatelessWidget {
 
   ///! Make sure to write override's starting letter in small not capital
   Widget build(BuildContext context) {
-    return InkWell(   //# This inkwell widget helps to get a Tapping effect on the grid items , In easier words we can say that IT converts grid items to Buttons 
+    return InkWell(
+      //# This inkwell widget helps to get a Tapping effect on the grid items , In easier words we can say that IT converts grid items to Buttons
       onTap: () {},
       splashColor: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(16),
       child: Container(
         padding: EdgeInsets.all(16),
-        decoration: BoxDecoration(
+        decoration: BoxDecoration( borderRadius: BorderRadius.circular(16), //?Set border radius inside the container to get circular Grid of items 
             gradient: LinearGradient(colors: [
           category.color.withOpacity(0.55),
           category.color.withOpacity(0.9)
