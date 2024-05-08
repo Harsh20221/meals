@@ -1,4 +1,4 @@
-
+//* This File Contains Dummy data for grid items 
 import 'package:flutter/material.dart';
 
 import 'package:meals/models/category.dart';
