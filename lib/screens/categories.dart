@@ -1,6 +1,5 @@
 //* This file contains all the Categories of Meals that'll be stored
 import 'package:flutter/material.dart';
-////import 'package:meals/models/category.dart';
 import 'package:meals/widgets/category_grid_item.dart';
 import 'package:meals/data/dummy_data.dart';
 
@@ -12,17 +11,19 @@ class CategoriesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Pick Your Category"),
       ),
-      body: GridView(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 1.5,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 20),
-        children: [
-          for (final category in availableCategories)
-            CategoryGridItem(category: category)
-        ],
-      ),
-    );
+      body: InkWell(onTap: (){},splashColor:Theme.of(context).primaryColor ,borderRadius:BorderRadius.circular(16),
+        child: GridView( padding: EdgeInsets.all(24),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1.5,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20),
+          children: [
+            for (final category in availableCategories)
+              CategoryGridItem(category: category)
+          ],
+        ),
+      ));
   }
+
 }
