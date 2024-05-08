@@ -9,8 +9,12 @@ class CategoryGridItem extends StatelessWidget {
 
   ///! Make sure to write override's starting letter in small not capital
   Widget build(BuildContext context) {
-    return InkWell(onTap: (){},splashColor:Theme.of(context).primaryColor ,borderRadius:BorderRadius.circular(16) ,
-      child: Container( padding: EdgeInsets.all(16),
+    return InkWell(   //# This inkwell widget helps to get a Tapping effect on the grid items , In easier words we can say that IT converts grid items to Buttons 
+      onTap: () {},
+      splashColor: Theme.of(context).primaryColor,
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
           category.color.withOpacity(0.55),
