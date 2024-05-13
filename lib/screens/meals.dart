@@ -19,7 +19,7 @@ class Mealscreen extends StatelessWidget {
               "Uh oh ... Nothing Here ",
               style: Theme.of(context)
                   .textTheme
-                  .headlineLarge!
+                  .headlineLarge! //? headlineLarge is the size of the text
                   .copyWith(color: Theme.of(context).colorScheme.onBackground), //? This style is used to style the text displayed on the screen based on the theme
             ),
             SizedBox(
@@ -29,7 +29,7 @@ class Mealscreen extends StatelessWidget {
               "Try Selecting A Different Category!", //? This is the text that will be displayed on the screen
               style: Theme.of(context) //? This style is used to style the text displayed on the screen based on the theme
                   .textTheme
-                  .bodyLarge!
+                  .bodyLarge! //? bodyLarge is the size of the text
                   .copyWith(color: Theme.of(context).colorScheme.onBackground),
             )
           ],
