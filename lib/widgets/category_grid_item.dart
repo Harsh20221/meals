@@ -5,6 +5,7 @@ class CategoryGridItem extends StatelessWidget {
   const CategoryGridItem({required this.category, required this.onSelectCategory});
   final Category category;
   final void Function() onSelectCategory; //! Make sure to write function with F in Capital 
+  //?This void Function is a function which when executes changes screen  , This function is used in categories.dart 
 
   @override
 
@@ -12,7 +13,7 @@ class CategoryGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       //# This inkwell widget helps to get a Tapping effect on the grid items , In easier words we can say that IT converts grid items to Buttons
-      onTap: () {},
+      onTap: onSelectCategory,
       splashColor: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(16),
       child: Container(
