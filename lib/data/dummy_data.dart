@@ -56,7 +56,7 @@ const availableCategories = [
   ),
 ];
 
-const dummyMeals = [
+const dummyMeals = [   //* This is the dummy data for the meals that will be displayed on the screen
   Meal(
     id: 'm1',
     categories: [
@@ -91,7 +91,7 @@ const dummyMeals = [
     isVegetarian: true,
     isLactoseFree: true,
   ),
-  Meal(
+  Meal( 
     id: 'm2',
     categories: [
       'c2',
@@ -151,7 +151,7 @@ const dummyMeals = [
     isVegetarian: false,
     isLactoseFree: true,
   ),
-  Meal(
+  Meal(    
     id: 'm4',
     categories: [
       'c4',

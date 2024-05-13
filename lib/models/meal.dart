@@ -11,7 +11,7 @@ enum Affordability {
   luxurious,
 }
 
-class Meal {
+class Meal {  //* This is a model class for the meal object  //? This class will be used to create meal objects
   const Meal({
     required this.id,
     required this.categories,

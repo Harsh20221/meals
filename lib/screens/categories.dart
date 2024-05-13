@@ -5,6 +5,12 @@ import 'package:meals/data/dummy_data.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
+void _selectcategory(){
+  Navigator.push(context, route) //? This is the function that will be called when a category is selected it will navigate to the next screen 
+}
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
