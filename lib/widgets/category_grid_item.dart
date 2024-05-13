@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:meals/models/category.dart';
 
 class CategoryGridItem extends StatelessWidget {
-  const CategoryGridItem({required this.category});
+  const CategoryGridItem({required this.category, required this.onSelectCategory});
   final Category category;
+  final void Function() onSelectCategory; //! Make sure to write function with F in Capital 
 
   @override
 

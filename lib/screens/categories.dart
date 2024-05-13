@@ -26,7 +26,7 @@ void _selectcategory(BuildContext context){
             mainAxisSpacing: 20),
         children: [
           for (final category in availableCategories)
-            CategoryGridItem(category: category)
+            CategoryGridItem(category: category,onSelectCategory:(){_selectcategory(context);} ,)
         ],
       ),
     );
