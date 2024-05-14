@@ -14,7 +14,7 @@ class MealItem extends StatelessWidget {
       child: Stack(
         //? This is the stack widget that will be used to stack the image and the text on top of each other
         children: [
-          FadeInImage(
+          FadeInImage( //# This Fade in Image will give the fade in image animation before the image loads 
               placeholder: MemoryImage(kTransparentImage),
               image: NetworkImage(meal.imageUrl),fit: BoxFit.cover,height: 200,width: double.infinity,),
           Positioned(
