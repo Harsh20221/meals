@@ -8,10 +8,46 @@ class MealItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: InkWell(
-        onTap: () {},
-        child: Stack(children: [FadeInImage(placeholder:MemoryImage(kTransparentImage), image: NetworkImage(meal.imageUrl)),Positioned(child: Container(),bottom: 0,left: 0,right: 0,)], //? This is the stack widget that will be used to stack the image and the text on top of each other
+    return Card( margin:const EdgeInsets.all(8) ,shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)) clipBehavior: Clip.hardEdge,elevation: 2,
+        child: InkWell(
+      onTap: () {},
+      child: Stack(
+        //? This is the stack widget that will be used to stack the image and the text on top of each other
+        children: [
+          FadeInImage(
+              placeholder: MemoryImage(kTransparentImage),
+              image: NetworkImage(meal.imageUrl),fit: BoxFit.cover,height: 200,width: double.infinity,),
+          Positioned(
+            child: Container(
+              color: Colors.black54,
+              padding: EdgeInsets.symmetric(vertical: 6, horizontal: 44),
+              child: Column(
+                children: [
+                  Text(
+                    meal.title,
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,//?Using TextOverflow.elliptis will make sure that the text will be cut off if it exceeds the limit using ... at the end
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Row(
+                    children: [],
+                  )
+                ],
+              ),
+            ), 
+            bottom: 0,
+            left: 0,
+            right: 0,
+          )
+        ],
       ),
     ));
   }

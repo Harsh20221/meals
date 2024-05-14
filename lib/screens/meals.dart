@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
+import 'package:meals/widgets/meal_item.dart';
 //* This file contains the structure of the meal screen
 class Mealscreen extends StatelessWidget {
   const Mealscreen({super.key, required this.meals, required this.title});
@@ -8,7 +9,7 @@ class Mealscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget content =  //? This is the widget that will be displayed on the meal screen 
-        ListView.builder(itemCount:meals.length ,itemBuilder: (ctx, index) => Text(meals[index].title));
+        ListView.builder(itemCount:meals.length ,itemBuilder: (ctx, index) => MealItem(meal: meals[index],));
    
     if (meals.isEmpty) { //? If there are no meals in the category then this will be displayed
       content = Center(  //! Do not write context = Center else it will give error
