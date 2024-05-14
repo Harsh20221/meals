@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/category.dart';
-
+//* This file will be used to create the category grid item widget that will be used to display the category items in the category screen , This'll contain the  text of the category
 class CategoryGridItem extends StatelessWidget {
   const CategoryGridItem({required this.category, required this.onSelectCategory});
   final Category category;

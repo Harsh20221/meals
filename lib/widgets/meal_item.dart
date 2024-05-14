@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
 import 'package:meals/widgets/meal_item_trait.dart';
 import 'package:transparent_image/transparent_image.dart';
-
+//* This file will be used to create the meal item widget that will be used to display the meal items in the meal screen , This'll contain the  image and the text of the meal 
 class MealItem extends StatelessWidget {
   const MealItem({super.key, required this.meal});
   final Meal meal;
