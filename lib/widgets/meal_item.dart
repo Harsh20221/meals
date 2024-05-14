@@ -5,9 +5,9 @@ import 'package:transparent_image/transparent_image.dart';
 
 //* This file will be used to create the meal item widget that will be used to display the meal items in the meal screen , This'll contain the  image and the text of the meal and will be used to display the meal items in the meal screen , It also contains items from meal_item_trait.dart
 class MealItem extends StatelessWidget {
-  const MealItem({super.key, required this.meal});
+  const MealItem({super.key, required this.meal,required this.onSelctMeal});
   final Meal meal; //? Contains data for all the meal
-
+final void Function (Meal meal ) onSelctMeal;
   String get complexityText {
     //? We have Created this get function to get Complexity with first Letter as capital , we are not directly displaying it inside MealitemTrait because we want 1 letter as Capital and also the fact that it is of enum type
     return meal.complexity.name[0].toUpperCase() +
@@ -29,7 +29,7 @@ class MealItem extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         elevation: 2,
         child: InkWell(
-          onTap: () {},
+          onTap: () {onSelctMeal(meal);},
           child: Stack(
             //? This is the stack widget that will be used to stack the image and the text on top of each other
             children: [
@@ -70,7 +70,7 @@ class MealItem extends StatelessWidget {
                           MealItemTrait(
                               icon: Icons.schedule,
                               label: '${meal.duration}min'),
-                              const SizedBox(width: 12,), //! Do Not Forget to add these SizedBox or else the Icons for duration and other metadata will be shown too close 
+                              const SizedBox(width: 12,), //! Do Not Forget to add these SizedBox or else the Icons for duration and other metadata will be
                           MealItemTrait(
                               icon: Icons.work, label: complexityText),
                               const SizedBox(width: 12,),

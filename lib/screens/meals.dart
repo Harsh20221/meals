@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
+import 'package:meals/screens/meal_details.dart';
 import 'package:meals/widgets/meal_item.dart';
 //* This file contains the structure of the meal screen
 class Mealscreen extends StatelessWidget {
   const Mealscreen({super.key, required this.meals, required this.title});
   final String title;
-  final List<Meal> meals;
+  final List<Meal> meals; //? This is the list of meals that will be displayed on the screen
+void  selectmeal (BuildContext context , Meal meal ){
+  Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>MealDetailsScreen(meal: meal)));
+}
   @override
   Widget build(BuildContext context) {
     Widget content =  //? This is the widget that will be displayed on the meal screen 
-        ListView.builder(itemCount:meals.length ,itemBuilder: (ctx, index) => MealItem(meal: meals[index],));
-   
+        ListView.builder(itemCount:meals.length ,itemBuilder: (ctx, index) => MealItem(meal: meals[index],onSelctMeal: (meal){selectmeal(context, meal);},));
     if (meals.isEmpty) { //? If there are no meals in the category then this will be displayed
       content = Center(  //! Do not write context = Center else it will give error
         child: Column(
@@ -23,7 +26,7 @@ class Mealscreen extends StatelessWidget {
                   .headlineLarge! //? headlineLarge is the size of the text
                   .copyWith(color: Theme.of(context).colorScheme.onBackground), //? This style is used to style the text displayed on the screen based on the theme
             ),
-            SizedBox(
+         const SizedBox(
               height: 16,
             ),
             Text(
