@@ -11,7 +11,7 @@ void _selectcategory(BuildContext context, Category category){   //? This is res
 
 final filteredMeals=dummyMeals.where((meal) => meal.categories.contains(category.id)).toList();
 
-  Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>Mealscreen(meals: [], title:category.title))); //? This is the function that will be called when a category is selected it will navigate to the next screen 
+  Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>Mealscreen(meals: filteredMeals, title:category.title))); //? This is the function that will be called when a category is selected it will navigate to the next screen //Make sure to connect this with filtered meals and in tiltle write category.title
 }
 
 
