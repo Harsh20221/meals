@@ -19,7 +19,7 @@ class MealItem extends StatelessWidget {
               placeholder: MemoryImage(kTransparentImage),
               image: NetworkImage(meal.imageUrl),fit: BoxFit.cover,height: 200,width: double.infinity,),
           Positioned(
-            child: Container(
+            child:Container(
               color: Colors.black54,
               padding: EdgeInsets.symmetric(vertical: 6, horizontal: 44),
               child: Column(
@@ -38,7 +38,7 @@ class MealItem extends StatelessWidget {
                   SizedBox(
                     height: 12,
                   ),
-                  Row(
+                  Row( //* We have a row inside another Row and it's not  giving error Because of postioned argument 
                     children: [MealItemTrait(icon: Icons.schedule, label: '${meal.duration} min ')],
                   )
                 ],
