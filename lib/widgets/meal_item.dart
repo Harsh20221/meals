@@ -7,7 +7,7 @@ import 'package:transparent_image/transparent_image.dart';
 class MealItem extends StatelessWidget {
   const MealItem({super.key, required this.meal,required this.onSelctMeal});
   final Meal meal; //? Contains data for all the meal
-final void Function (Meal meal ) onSelctMeal;
+final void Function (Meal meal ) onSelctMeal; //# This is the function that will be called when a meal is selected
   String get complexityText {
     //? We have Created this get function to get Complexity with first Letter as capital , we are not directly displaying it inside MealitemTrait because we want 1 letter as Capital and also the fact that it is of enum type
     return meal.complexity.name[0].toUpperCase() +
