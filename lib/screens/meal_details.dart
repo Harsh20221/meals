@@ -18,26 +18,36 @@ class MealDetailsScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             const SizedBox(height: 14),
-            Text(
-                'Ingredients', //? This Is  A Title Foe Meal Ingredients 
+            Text('Ingredients', //? This Is  A Title Foe Meal Ingredients
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.bold)),
             const SizedBox(height: 14),
-            for (final ingredients in meal.ingredients) //? This is the contents for Meal Preperation ingredients 
+            for (final ingredients in meal
+                .ingredients) //? This is the contents for Meal Preperation ingredients
               Text(
                 ingredients,
-                textAlign: TextAlign
-                    .center, 
+                textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     color: Theme.of(context).colorScheme.onBackground),
               ),
             const SizedBox(height: 14),
-            Text('Steps',  //? This is a Title  for Meal Preperation Steps in Meal Details
+            Text(
+                'Steps', //? This is a Title  for Meal Preperation Steps in Meal Details
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     color: Theme.of(context).colorScheme.primary,
-                    fontWeight: FontWeight.bold))
-          ,const SizedBox(height: 14),for (final step in meal.steps) Padding(padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 16),child: Text(step,style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.onBackground),),)
+                    fontWeight: FontWeight.bold)),
+            const SizedBox(height: 14),
+            for (final step in meal.steps) //? These are Contents for Meal Preperation Steps 
+              Padding( //! Make sure to enclose all the Data Inside Padding itself using a child Widghet else it will  Give An Error 
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                child: Text(
+                  step,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground),
+                ),
+              )
           ],
         ));
   }
