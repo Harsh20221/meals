@@ -9,7 +9,7 @@ class MealDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text(meal.title)),
-        body: Column(
+        body: ListView(
           children: [
             Image.network(
               meal.imageUrl,
@@ -37,6 +37,7 @@ class MealDetailsScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.bold))
+          ,const SizedBox(height: 14),for (final step in meal.steps) Padding(padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 16),child: Text(step,style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.onBackground),),)
           ],
         ));
   }
