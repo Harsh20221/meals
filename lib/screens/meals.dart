@@ -7,7 +7,7 @@ class Mealscreen extends StatelessWidget {
   const Mealscreen({super.key, required this.meals, required this.title});
   final String title;
   final List<Meal> meals; //? This is the list of meals that will be displayed on the screen
-void  selectmeal (BuildContext context , Meal meal ){ //# This is the function that will be called when a meal is selected this'll help to redirect to another Screen containing meal details 
+void  selectmeal (BuildContext context , Meal meal ){ //# This is the function that will be called when a meal is selected this'll help to redirect to another Screen containing meal details used for Navigation between Meals and meal details Screen  
   Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>MealDetailsScreen(meal: meal)));
 }
   @override
