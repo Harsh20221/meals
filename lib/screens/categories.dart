@@ -9,7 +9,7 @@ class CategoriesScreen extends StatelessWidget {
 void _selectcategory(BuildContext context, Category category){   //? This is responsible for Navigation from Home Screen to Meals Screen  
 //! Make sure to not forget to write Category category inside the void function 
 
-final filteredMeals=dummyMeals.where((meal) => meal.categories.contains(category.id)).toList();
+final filteredMeals=dummyMeals.where((meal) => meal.categories.contains(category.id)).toList();  //# This is a Navigation Method which'll take care of Navigation Between Home screen and Meal Screen 
 
   Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>Mealscreen(meals: filteredMeals, title:category.title))); //? This is the function that will be called when a category is selected it will navigate to the next screen //Make sure to connect this with filtered meals and in tiltle write category.title
 }
