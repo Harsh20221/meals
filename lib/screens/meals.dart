@@ -4,8 +4,8 @@ import 'package:meals/screens/meal_details.dart';
 import 'package:meals/widgets/meal_item.dart';
 //* This file contains the structure of the meal screen
 class Mealscreen extends StatelessWidget {
-  const Mealscreen({super.key, required this.meals, required this.title});
-  final String title;
+  const Mealscreen({super.key, required this.meals,  this.title});
+  final String? title;
   final List<Meal> meals; //? This is the list of meals that will be displayed on the screen
 
 void  selectmeal (BuildContext context , Meal meal ){ //# This is the function that will be called when a meal is selected this'll help to redirect to another Screen containing meal details used for Navigation between Meals and meal details Screen  
@@ -43,8 +43,11 @@ void  selectmeal (BuildContext context , Meal meal ){ //# This is the function t
         ),
       );
     }
+    if (title==null){ //! We are adding this condition so that we can display title screen conditionally when reusing it with tabs.dart in favourites screen 
+      return content;
+    }
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(title: Text(title!)), //! Do not forget to add ! after title 
       body: content,
     );
   }
