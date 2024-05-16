@@ -3,15 +3,22 @@ import 'package:meals/models/meal.dart';
 
 //* This File Contains the Meal Details Screen
 class MealDetailsScreen extends StatelessWidget {
-  const MealDetailsScreen({super.key, required this.meal});
+  const MealDetailsScreen({super.key, required this.meal,required this.onToggleFavourite});
   final Meal meal;
+  final void Function(Meal meal) onToggleFavourite;  //? Do not write () after ontoggle Favourite as we are assigning it and not using it 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(meal.title)),
+        appBar: AppBar(
+          title: Text(meal.title),
+          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.star))],
+        ), //# Added favourite Icon for tabs
         body: ListView(
+          //? Displays Meal Details in ListView
           children: [
             Image.network(
+              //? Gets Image of Meal through URL
               meal.imageUrl,
               height: 300,
               width: double.infinity,
@@ -38,8 +45,10 @@ class MealDetailsScreen extends StatelessWidget {
                     color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.bold)),
             const SizedBox(height: 14),
-            for (final step in meal.steps) //? These are Contents for Meal Preperation Steps 
-              Padding( //! Make sure to enclose all the Data Inside Padding itself using a child Widghet else it will  Give An Error 
+            for (final step
+                in meal.steps) //? These are Contents for Meal Preperation Steps
+              Padding(
+                //! Make sure to enclose all the Data Inside Padding itself using a child Widghet else it will  Give An Error
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                 child: Text(

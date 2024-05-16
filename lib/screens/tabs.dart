@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/meals.dart';
-
+import 'package:meals/models/meal.dart';
 //* This File Is responsible for Tab Based Navigation , Bottom Tabs bar 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -16,6 +16,14 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex =
       0; //? This line of code keeps track of the Selected tab
+      final List <Meal> _favouriteMeals =[];
+      void _togglemealfavouritestatus(Meal meal){
+      final isexisting=_favouriteMeals.contains(meal);
+      if(isexisting==true){
+        _favouriteMeals.remove(meal);
+      }
+      else _favouriteMeals.add(meal);
+      }
   void _selectPage(int index) {
     setState(() {
       _selectedPageIndex =
@@ -31,9 +39,8 @@ class _TabsScreenState extends State<TabsScreen> {
     if (_selectedPageIndex == 1) {
       //? This changes the Active page from Categories to Favouries if we change it from the tabs menu
       activepage = Mealscreen(
-        title: 'Favorites',
         meals: [], //!   This line make sures we use mealscreen but since list is empty so we do not display dummy data from meals screen
-      );
+      onToggleFavourite:_togglemealfavouritestatus ,); //# it'll make sure if a particular item is already favourite then remove it from favourites and if it is not favourite then add it to favourites  
       activePageTitle = 'Your Favourites ';
     }
     return Scaffold(
