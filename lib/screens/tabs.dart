@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/meals.dart';
 import 'package:meals/models/meal.dart';
+import 'package:meals/widgets/main_drawer.dart';
 //* This File Is responsible for Tab Based Navigation , Bottom Tabs bar 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -59,7 +60,7 @@ void _ShowinfoMessage(String message){ //? This displays a message whenever we a
     return Scaffold(
       appBar: AppBar(
         title: Text(activePageTitle),
-      ),
+      ),drawer:const MainDrawer() ,
       body: activepage, //! The default active page is Categories screen 
       bottomNavigationBar: BottomNavigationBar(
         items: const [
