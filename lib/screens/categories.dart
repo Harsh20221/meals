@@ -18,11 +18,8 @@ final filteredMeals=dummyMeals.where((meal) => meal.categories.contains(category
 
   @override
   Widget build(BuildContext context) {  
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Pick Your Category"),
-      ),
-      body: GridView( padding: EdgeInsets.all(24),
+    return  //* No scaffold here because we are displaying this screen via tabs.dart and that screen takes care of Scaffold 
+       GridView( padding: EdgeInsets.all(24),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 1.5,
@@ -32,7 +29,6 @@ final filteredMeals=dummyMeals.where((meal) => meal.categories.contains(category
           for (final category in availableCategories)
             CategoryGridItem(category: category,onSelectCategory:(){_selectcategory(context,category);} ,) //! Do not forget to write category inside _selectcategory next to context
         ],  //? onSelectCategory is defined insode category_grid.dart
-      ),
-    );
+      );
   }
 }

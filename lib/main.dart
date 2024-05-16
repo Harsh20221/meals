@@ -26,7 +26,8 @@ class App extends StatelessWidget {
     return MaterialApp(
       theme: theme,
       home:////// Mealscreen(meals: dummyMeals, title:"SOME THING HERRE")
-     TabsScreen() //////CategoriesScreen()
+     const TabsScreen()  //////CategoriesScreen()
     );
   }
 }
+//* This tabs screen is responsible for bottom tabs bar that switched between categories and favourites 
