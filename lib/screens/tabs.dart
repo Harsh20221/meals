@@ -17,13 +17,21 @@ class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex =
       0; //? This line of code keeps track of the Selected tab
       final List <Meal> _favouriteMeals =[];
-      void _togglemealfavouritestatus(Meal meal){
+
+
+      void _togglemealfavouritestatus(Meal meal){ //? This'll help in toggling the favourite status of the meal 
       final isexisting=_favouriteMeals.contains(meal);
       if(isexisting==true){
-        _favouriteMeals.remove(meal);
+        setState(() {
+          _favouriteMeals.remove(meal);
+        });
       }
-      else _favouriteMeals.add(meal);
+      else setState(() {
+         _favouriteMeals.add(meal);
+      });
+     
       }
+      
   void _selectPage(int index) {
     setState(() {
       _selectedPageIndex =
@@ -34,12 +42,12 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     Widget activepage =
-        const CategoriesScreen(); //# This widget function makes sure we display categories screen if the choice of tab is default or zero we can say
+           CategoriesScreen(onToggleFavourite: _togglemealfavouritestatus,); //# This widget function makes sure we display categories screen if the choice of tab is default or zero we can say
     var activePageTitle = 'Categories';
     if (_selectedPageIndex == 1) {
       //? This changes the Active page from Categories to Favouries if we change it from the tabs menu
       activepage = Mealscreen(
-        meals: [], //!   This line make sures we use mealscreen but since list is empty so we do not display dummy data from meals screen
+        meals: _favouriteMeals, //!   This line make sures we use mealscreen but since list is empty so we do not display dummy data from meals screen , Do not forget to pass _favouriteMeals list here
       onToggleFavourite:_togglemealfavouritestatus ,); //# it'll make sure if a particular item is already favourite then remove it from favourites and if it is not favourite then add it to favourites  
       activePageTitle = 'Your Favourites ';
     }

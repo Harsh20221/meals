@@ -4,15 +4,17 @@ import 'package:meals/screens/meals.dart';
 import 'package:meals/widgets/category_grid_item.dart';
 import 'package:meals/data/dummy_data.dart';
 import 'package:meals/models/category.dart';
+import 'package:meals/models/meal.dart';
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  const CategoriesScreen({super.key,required this.onToggleFavourite});//! Do not forget to add required with the new function onToggleFavourites that we created in mealdetails and applied across meals and categories.dart 
+  final void Function(Meal meal) onToggleFavourite;
 void _selectcategory(BuildContext context, Category category){   //? This is responsible for Navigation from Home Screen to Meals Screen  
 //! Make sure to not forget to write Category category inside the void function 
 
 final filteredMeals=dummyMeals.where((meal) => meal.categories.contains(category.id)).toList();  //# This is a Navigation Method which'll take care of Navigation Between Home screen and Meal Screen 
 
-  Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>Mealscreen(meals: filteredMeals, title:category.title))); //? This is the function that will be called when a category is selected it will navigate to the next screen //Make sure to connect this with filtered meals and in tiltle write category.title
-}
+  Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>Mealscreen(meals: filteredMeals, title:category.title,onToggleFavourite: onToggleFavourite,))); //? This is the function that will be called when a category is selected it will navigate to the next screen //Make sure to connect this with filtered meals and in tiltle write category.title
+}///! Make Sure to specify this onToggleFavouites and in this field write onToggleFavourite 
 
 
 

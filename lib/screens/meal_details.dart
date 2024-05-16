@@ -12,7 +12,7 @@ class MealDetailsScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(meal.title),
-          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.star))],
+          actions: [IconButton(onPressed: () {onToggleFavourite(meal);}, icon: Icon(Icons.star))], //! Very important-- Do  not forget to assign  onToggleFavourite here as we are calling it here with (meal)
         ), //# Added favourite Icon for tabs
         body: ListView(
           //? Displays Meal Details in ListView
@@ -25,6 +25,7 @@ class MealDetailsScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             const SizedBox(height: 14),
+
             Text('Ingredients', //? This Is  A Title Foe Meal Ingredients
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     color: Theme.of(context).colorScheme.primary,
