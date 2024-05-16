@@ -17,24 +17,25 @@ class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex =
       0; //? This line of code keeps track of the Selected tab
       final List <Meal> _favouriteMeals =[];
-void _ShowinfoMessage(String message){
+
+void _ShowinfoMessage(String message){ //? This displays a message whenever we add an item or Remove it from the Favourites 
   ScaffoldMessenger.of(context).clearSnackBars();
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text(message),duration:Duration( seconds:30 ),));
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text(message ),));
 }
 
       void _togglemealfavouritestatus(Meal meal){ //? This'll help in toggling the favourite status of the meal 
       final isexisting=_favouriteMeals.contains(meal);
-      if(isexisting==true){
+      if(isexisting){
         setState(() {
           _favouriteMeals.remove(meal);
         });
-        _ShowinfoMessage("Meal is No Longer A Favorite! ");
+        _ShowinfoMessage("Meal is No Longer A Favorite! "); //! Make sure to link the _Showinfoo Message here
       }
-      else setState(() {
+      else{ setState(() {
          _favouriteMeals.add(meal);
       });
-      _ShowinfoMessage("Meal is Added to Favorites!");
-      }
+      _ShowinfoMessage("Meal is Added to Favorites!"); //! In else block do not forget to enclose the entire else block in {} or else The previous statement Meal is no longer a favourite will not execute 
+      }}
       
   void _selectPage(int index) {
     setState(() {
