@@ -9,7 +9,7 @@ class FiltersScreen extends StatefulWidget {
 }
 
 class _FiltersScreenState extends State<FiltersScreen> {
-  var _gluttenFreeFilterset = false;
+  var _gluttenFreeFilterset = false;  //? tHIS Value will store the default value of the Toggle Button as false 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +20,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         children: [
           SwitchListTile(
             value: _gluttenFreeFilterset,
-            onChanged: (ischecked) {},
+            onChanged: (ischecked) {},  //? is Checked will check if the ToggleButton is pressed on or off 
             title: Text(
               "'Gluten Free",
               style: Theme.of(context)
