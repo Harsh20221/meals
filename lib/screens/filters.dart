@@ -24,7 +24,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
               _gluttenFreeFilterset=ischecked;//todo: Make sure to assign is checked to _gluttenfreeFilterSet in order to check if the Toggle is on or Off 
             });},  //? is Checked will check if the ToggleButton is pressed on or off 
             title: Text(
-              "'Gluten Free",
+              "Gluten Free",
               style: Theme.of(context)
                   .textTheme
                   .titleLarge!
