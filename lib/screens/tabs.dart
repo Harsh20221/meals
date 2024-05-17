@@ -44,6 +44,14 @@ void _ShowinfoMessage(String message){ //? This displays a message whenever we a
           index; //? This helps in keeping Track of selected  tab index
     });
   }
+void _setScreen (String identifier){
+if(identifier=='filters'){
+
+}
+else {
+  Navigator.of(context).pop();
+}
+}
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +68,7 @@ void _ShowinfoMessage(String message){ //? This displays a message whenever we a
     return Scaffold(
       appBar: AppBar(
         title: Text(activePageTitle),
-      ),drawer:const MainDrawer() ,
+      ),drawer:MainDrawer(onSelectScreen: _setScreen) ,
       body: activepage, //! The default active page is Categories screen 
       bottomNavigationBar: BottomNavigationBar(
         items: const [
