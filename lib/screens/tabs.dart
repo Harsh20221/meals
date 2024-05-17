@@ -17,7 +17,7 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex =
       0; //? This line of code keeps track of the Selected tab
-      final List <Meal> _favouriteMeals =[];
+      final List <Meal> _favouriteMeals =[];//? This list keeps favourite items inside it 
 
 void _ShowinfoMessage(String message){ //? This displays a message whenever we add an item or Remove it from the Favourites 
   ScaffoldMessenger.of(context).clearSnackBars();
@@ -44,12 +44,12 @@ void _ShowinfoMessage(String message){ //? This displays a message whenever we a
           index; //? This helps in keeping Track of selected  tab index
     });
   }
-void _setScreen (String identifier){
+void _setScreen (String identifier){ //# this void function helps in the functioning of App Drawer 
 if(identifier=='filters'){
 
 }
 else {
-  Navigator.of(context).pop();
+  Navigator.of(context).pop(); //? Helps to close drawer if Meals is selected while in home screen 
 }
 }
 
@@ -68,7 +68,7 @@ else {
     return Scaffold(
       appBar: AppBar(
         title: Text(activePageTitle),
-      ),drawer:MainDrawer(onSelectScreen: _setScreen) ,
+      ),drawer:MainDrawer(onSelectScreen: _setScreen) ,//? Connect app drawer here using Main Drawer 
       body: activepage, //! The default active page is Categories screen 
       bottomNavigationBar: BottomNavigationBar(
         items: const [
