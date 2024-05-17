@@ -19,7 +19,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Your Favourites"),
+        title: const Text("Filters"),
       ),
       body: Column(
         children: [
