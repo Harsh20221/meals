@@ -20,7 +20,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
         children: [
           SwitchListTile(
             value: _gluttenFreeFilterset,
-            onChanged: (ischecked) {},  //? is Checked will check if the ToggleButton is pressed on or off 
+            onChanged: (ischecked) {setState(() {
+              _gluttenFreeFilterset=ischecked;//todo: Make sure to assign is checked to _gluttenfreeFilterSet in order to check if the Toggle is on or Off 
+            });},  //? is Checked will check if the ToggleButton is pressed on or off 
             title: Text(
               "'Gluten Free",
               style: Theme.of(context)
