@@ -27,7 +27,10 @@ class MainDrawer extends StatelessWidget {
                       .titleLarge!
                       .copyWith(color: Theme.of(context).colorScheme.primary),
                 ),
-                ListTile(
+              ], 
+            ),
+          )
+       ,  ListTile(
                   leading: Icon(Icons.restaurant,
                       size: 26,
                       color: Theme.of(context).colorScheme.onBackground),
@@ -46,10 +49,7 @@ class MainDrawer extends StatelessWidget {
                           color: Theme.of(context).colorScheme.onBackground,
                           fontSize: 24)),
                   onTap: () {onSelectScreen('filters');},
-                )], 
-            ),
-          )
-        ],
+                ) ],
       ),
     );
   }
