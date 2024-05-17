@@ -46,11 +46,9 @@ void _ShowinfoMessage(String message){ //? This displays a message whenever we a
     });
   }
 void _setScreen (String identifier){ //# this void function helps in the functioning of App Drawer 
-if(identifier=='filters'){
-Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>  FiltersScreen()));
-}
-else {
   Navigator.of(context).pop(); //? Helps to close drawer if Meals is selected while in home screen 
+if(identifier=='filters'){
+Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>  const FiltersScreen()));
 }
 }
 
