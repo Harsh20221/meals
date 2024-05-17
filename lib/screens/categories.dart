@@ -7,7 +7,7 @@ import 'package:meals/models/category.dart';
 import 'package:meals/models/meal.dart';
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key,required this.onToggleFavourite});//! Do not forget to add required with the new function onToggleFavourites that we created in mealdetails and applied across meals and categories.dart 
-  final void Function(Meal meal) onToggleFavourite;
+  final void Function(Meal meal) onToggleFavourite; //# This is a function that will be called when a meal is added to favourites
 void _selectcategory(BuildContext context, Category category){   //? This is responsible for Navigation from Home Screen to Meals Screen  
 //! Make sure to not forget to write Category category inside the void function 
 
@@ -21,8 +21,8 @@ final filteredMeals=dummyMeals.where((meal) => meal.categories.contains(category
   @override
   Widget build(BuildContext context) {  
     return  //* No scaffold here because we are displaying this screen via tabs.dart and that screen takes care of Scaffold 
-       GridView( padding: EdgeInsets.all(24),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+       GridView( padding: EdgeInsets.all(24), //? This is the padding of the grid view to make sure it is not stuck to the edges
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount( //? This is a grid view that will display all the categories
             crossAxisCount: 2,
             childAspectRatio: 1.5,
             crossAxisSpacing: 20,
