@@ -27,7 +27,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
       appBar: AppBar(
         title: const Text("Filters"),
       ),
-      body: PopScope( canPop: false,onPopInvoked: (bool didPop){
+      body: PopScope( canPop: false,onPopInvoked: (bool didPop){ //# This popscope will Help in Providing filters Functionality , Manages back navigation gestures in App
         if(didPop )return; Navigator.of(context).pop({
           Filter.glutenFree:_gluttenFreeFilterset,
          Filter.lactoseFree: _lactoseFreeFilterset,
