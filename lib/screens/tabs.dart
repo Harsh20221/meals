@@ -1,12 +1,20 @@
 /////import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:meals/data/dummy_data.dart';
 import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/filters.dart';
 import 'package:meals/screens/meals.dart';
 import 'package:meals/models/meal.dart';
 import 'package:meals/widgets/main_drawer.dart';
+/////import 'package:meals/screens/filters.dart';
 //* This File Is responsible for Tab Based Navigation , Bottom Tabs bar 
+const kInitialFilters={ //? This is a Global List of Default Filter Values 
+   Filter.glutenFree:false,
+         Filter.lactoseFree:false,
+         Filter.vegetarian:false,
+         Filter.vegan:false,
+};
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
   @override
@@ -18,7 +26,13 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex =
       0; //? This line of code keeps track of the Selected tab
-      final List <Meal> _favouriteMeals =[];//? This list keeps favourite items inside it 
+
+ final List <Meal> _favouriteMeals =[];//? This list keeps favourite items inside it 
+ 
+  Map <Filter,bool> _selectedFilters = kInitialFilters; //? kinitial filters is defined here at Line 1  here k represents it's global nature , It's a Convention in Flutter to start global variables with k 
+
+
+
 
 void _ShowinfoMessage(String message){ //? This displays a message whenever we add an item or Remove it from the Favourites 
   ScaffoldMessenger.of(context).clearSnackBars();
@@ -45,17 +59,39 @@ void _ShowinfoMessage(String message){ //? This displays a message whenever we a
           index; //? This helps in keeping Track of selected  tab index
     });
   }
-void _setScreen (String identifier){ //# this void function helps in the functioning of App Drawer 
+  
+void _setScreen (String identifier) async { //# this void function helps in the functioning of App Drawer and it also takes care of filters 
+//! Do not forget to use async with this Function else it will give error in final result using await 
   Navigator.of(context).pop(); //? Helps to close drawer if Meals is selected while in home screen 
 if(identifier=='filters'){
-Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>  const FiltersScreen()));
-}
-}
+  
+final result= await Navigator.of(context).push<Map<Filter,bool>>(MaterialPageRoute(builder: (ctx)=>  const FiltersScreen(),));
+
+setState(() {
+  _selectedFilters= result ?? kInitialFilters;
+});
+}}
 
   @override
   Widget build(BuildContext context) {
+    final availableMeals=dummyMeals.where((meal) { //# This Here will Perform the Actual Filter operation by Checking if we have turned on or off the selected filters then loading them selectively from dummydata 
+      if(_selectedFilters[Filter.glutenFree]! &&  !meal.isGlutenFree){
+        return false;
+      }
+      if(_selectedFilters[Filter.lactoseFree]! &&  !meal.isLactoseFree){
+        return false;
+      }
+       if(_selectedFilters[Filter.vegetarian]! &&  !meal.isVegetarian){
+        return false;
+      }
+       if(_selectedFilters[Filter.vegan]! &&  !meal.isVegan){
+        return false;
+      }
+      return true;
+    }).toList();
     Widget activepage =
-           CategoriesScreen(onToggleFavourite: _togglemealfavouritestatus,); //# This widget function makes sure we display categories screen if the choice of tab is default or zero we can say
+           CategoriesScreen(onToggleFavourite: _togglemealfavouritestatus,availableMeals:availableMeals,); //# This widget function makes sure we display categories screen if the choice of tab is default or zero we can say , make sure to add available meals property and assign available meals to it here 
+
     var activePageTitle = 'Categories';
     if (_selectedPageIndex == 1) {
       //? This changes the Active page from Categories to Favouries if we change it from the tabs menu
