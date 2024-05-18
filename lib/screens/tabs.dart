@@ -90,7 +90,7 @@ setState(() {
       return true;
     }).toList();
     Widget activepage =
-           CategoriesScreen(onToggleFavourite: _togglemealfavouritestatus,availableMeals:availableMeals,); //# This widget function makes sure we display categories screen if the choice of tab is default or zero we can say , make sure to add available meals property and assign available meals to it here 
+           CategoriesScreen(onToggleFavourite: _togglemealfavouritestatus,availableMeals:availableMeals); //# This widget function makes sure we display categories screen if the choice of tab is default or zero we can say , make sure to add available meals property and assign available meals to it here 
 
     var activePageTitle = 'Categories';
     if (_selectedPageIndex == 1) {
