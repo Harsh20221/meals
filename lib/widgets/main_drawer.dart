@@ -48,7 +48,7 @@ class MainDrawer extends StatelessWidget {
                       style: Theme.of(context).textTheme.titleSmall!.copyWith(
                           color: Theme.of(context).colorScheme.onBackground,
                           fontSize: 24)),
-                  onTap: () {onSelectScreen('Filters');},
+                  onTap: () {onSelectScreen('filters');}, //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!IF YOU WRITE filters as Filters then use it here then code will give error and wuill take up your sleep so  please do not do that or get ready to be fucked and lose your sleep
                 ) ],
       ),
     );
