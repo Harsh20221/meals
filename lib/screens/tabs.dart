@@ -65,7 +65,9 @@ void _setScreen (String identifier) async { //# this void function helps in the 
   Navigator.of(context).pop(); //? Helps to close drawer if Meals is selected while in home screen 
 if(identifier=='filters'){
   
-final result= await Navigator.of(context).push<Map<Filter,bool>>(MaterialPageRoute(builder: (ctx)=>  const FiltersScreen(),));
+final result = await Navigator.of(context).push<Map<Filter,bool>>(
+  MaterialPageRoute(builder: (ctx) => FiltersScreen(currentFilters: _selectedFilters,))
+);
 
 setState(() {
   _selectedFilters= result ?? kInitialFilters;
