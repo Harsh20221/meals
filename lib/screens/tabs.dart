@@ -77,7 +77,9 @@ setState(() {
 }}
 
   @override
+ 
   Widget build(BuildContext context) {
+     ref.watch(mealsProvider); //* This ref is a part of Riverpod Package and it helps us to manage the state of the Widgets Effectively , This acts like a Listener 
     final availableMeals=dummyMeals.where((meal) { //# This Here will Perform the Actual Filter operation by Checking if we have turned on or off the selected filters then loading them selectively from dummydata 
       if(_selectedFilters[Filter.glutenFree]! &&  !meal.isGlutenFree){
         return false;
