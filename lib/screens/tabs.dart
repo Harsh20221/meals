@@ -7,6 +7,8 @@ import 'package:meals/screens/filters.dart';
 import 'package:meals/screens/meals.dart';
 import 'package:meals/models/meal.dart';
 import 'package:meals/widgets/main_drawer.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meals/providers/meals_provider.dart';
 /////import 'package:meals/screens/filters.dart';
 //* This File Is responsible for Tab Based Navigation , Bottom Tabs bar 
 const kInitialFilters={ //? This is a Global List of Default Filter Values 
@@ -15,15 +17,15 @@ const kInitialFilters={ //? This is a Global List of Default Filter Values
          Filter.vegetarian:false,
          Filter.vegan:false,
 };
-class TabsScreen extends StatefulWidget {
+class TabsScreen extends ConsumerStatefulWidget {
   const TabsScreen({super.key});
   @override
-  State<TabsScreen> createState() {
+  ConsumerState<TabsScreen> createState() {
     return _TabsScreenState();
   }
 }
 
-class _TabsScreenState extends State<TabsScreen> {
+  class _TabsScreenState extends ConsumerState<TabsScreen> {
   int _selectedPageIndex =
       0; //? This line of code keeps track of the Selected tab
 
