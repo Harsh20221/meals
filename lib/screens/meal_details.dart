@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/models/meal.dart';
+import 'package:meals/providers/favourites_providers.dart';
 
 //* This File Contains the Meal Details Screen
-class MealDetailsScreen extends StatelessWidget {
-  const MealDetailsScreen({super.key, required this.meal,required this.onToggleFavourite});
+class MealDetailsScreen extends ConsumerWidget {
+  const MealDetailsScreen({super.key, required this.meal,});
   final Meal meal;
-  final void Function(Meal meal) onToggleFavourite;  //? Do not write () after ontoggle Favourite as we are assigning it and not using it 
+ //////////////////// final void Function(Meal meal) onToggleFavourite;  //? Do not write () after ontoggle Favourite as we are assigning it and not using it 
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref ) {
     return Scaffold(
         appBar: AppBar(
           title: Text(meal.title),
-          actions: [IconButton(onPressed: () {onToggleFavourite(meal);}, icon: Icon(Icons.star))], //! Very important-- Do  not forget to assign  onToggleFavourite here as we are calling it here like onToggleFavourite(meal)
+          actions: [IconButton(onPressed: () {final wasadded= ref.read(favouriteMealsProvider.notifier).togglemealfavouritestatus(meal);
+          ScaffoldMessenger.of(context).clearSnackBars();
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text(wasadded?'Meal Added as Favourite': 'Meal Removed as Favourite '),)); //? Using terinary operator to display message if meal is added or not added 
+          
+          
+          
+          
+          }, icon: Icon(Icons.star))], //! Very important-- Do  not forget to assign  onToggleFavourite here as we are calling it here like onToggleFavourite(meal)
         ), //# Added favourite Icon for tabs
         body: ListView(
           //? Displays Meal Details in ListView

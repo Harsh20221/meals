@@ -1,12 +1,13 @@
 /////import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:meals/providers/favourites_providers.dart';
 ////////import 'package:meals/data/dummy_data.dart';
 ///* Dummydata Replaced with Riverpod Method 
 import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/filters.dart';
 import 'package:meals/screens/meals.dart';
-import 'package:meals/models/meal.dart';
+//////import 'package:meals/models/meal.dart';
 import 'package:meals/widgets/main_drawer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/providers/meals_provider.dart';
@@ -30,7 +31,7 @@ class TabsScreen extends ConsumerStatefulWidget {
   int _selectedPageIndex =
       0; //? This line of code keeps track of the Selected tab
 
- final List <Meal> _favouriteMeals =[];//? This list keeps favourite items inside it 
+///// final List <Meal> _favouriteMeals =[];//? This list keeps favourite items inside it 
  
   Map <Filter,bool> _selectedFilters = kInitialFilters; //? kinitial filters is defined here at Line 1  here k represents it's global nature , It's a Convention in Flutter to start global variables with k 
 
@@ -38,11 +39,10 @@ class TabsScreen extends ConsumerStatefulWidget {
 
 
 void _ShowinfoMessage(String message){ //? This displays a message whenever we add an item or Remove it from the Favourites 
-  ScaffoldMessenger.of(context).clearSnackBars();
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text(message ),));
+  
 }
 
-      void _togglemealfavouritestatus(Meal meal){ //? This'll help in toggling the favourite status of the meal 
+   /*    void _togglemealfavouritestatus(Meal meal){ //? This'll help in toggling the favourite status of the meal 
       final isexisting=_favouriteMeals.contains(meal);
       if(isexisting){
         setState(() {
@@ -54,7 +54,7 @@ void _ShowinfoMessage(String message){ //? This displays a message whenever we a
          _favouriteMeals.add(meal);
       });
       _ShowinfoMessage("Meal is Added to Favorites!"); //! In else block do not forget to enclose the entire else block in {} or else The previous statement Meal is no longer a favourite will not execute 
-      }}
+      }} */
       
   void _selectPage(int index) {
     setState(() {
@@ -97,14 +97,15 @@ setState(() {
       return true;
     }).toList();
     Widget activepage =
-           CategoriesScreen(onToggleFavourite: _togglemealfavouritestatus,availableMeals:availableMeals); //# This widget function makes sure we display categories screen if the choice of tab is default or zero we can say , make sure to add available meals property and assign available meals to it here 
+           CategoriesScreen(availableMeals:availableMeals); //# This widget function makes sure we display categories screen if the choice of tab is default or zero we can say , make sure to add available meals property and assign available meals to it here 
 
     var activePageTitle = 'Categories';
     if (_selectedPageIndex == 1) {
       //? This changes the Active page from Categories to Favouries if we change it from the tabs menu
+      final favouritemeals=ref.watch(favouriteMealsProvider);
       activepage = Mealscreen(
-        meals: _favouriteMeals, //!   This line make sures we use mealscreen but since list is empty so we do not display dummy data from meals screen , Do not forget to pass _favouriteMeals list here
-      onToggleFavourite:_togglemealfavouritestatus ,); //# it'll make sure if a particular item is already favourite then remove it from favourites and if it is not favourite then add it to favourites  
+        meals: favouritemeals, //!   This line make sures we use mealscreen but since list is empty so we do not display dummy data from meals screen , Do not forget to pass _favouriteMeals list here
+    ); //# it'll make sure if a particular item is already favourite then remove it from favourites and if it is not favourite then add it to favourites  
       activePageTitle = 'Your Favourites ';
     }
     return Scaffold(
