@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meals/providers/filters_provider.dart';
+
  //* This file contains the filter screen 
- enum Filter{
-  glutenFree,
-  lactoseFree,
-  vegetarian,
-  vegan
- }
-class FiltersScreen extends StatefulWidget {
-  const FiltersScreen({super.key,required this.currentFilters});
-  final Map<Filter,bool> currentFilters;
+ 
+class FiltersScreen extends ConsumerStatefulWidget {
+  const FiltersScreen({super.key});
   @override
-  State<FiltersScreen> createState() {
+  ConsumerState<FiltersScreen> createState() {
     return _FiltersScreenState();
   }
 }
 
-class _FiltersScreenState extends State<FiltersScreen> {
+class _FiltersScreenState extends ConsumerState<FiltersScreen> {
   var _gluttenFreeFilterset = false;  //? tHIS Value will store the default value of the Toggle Button as false 
   var _lactoseFreeFilterset=false; 
   var vegatarianFilterset=false;
@@ -23,10 +20,11 @@ class _FiltersScreenState extends State<FiltersScreen> {
   @override
   void initState() {
     super.initState();
-    _gluttenFreeFilterset = widget.currentFilters[Filter.glutenFree]!;
-    _lactoseFreeFilterset = widget.currentFilters[Filter.lactoseFree]!;
-    vegatarianFilterset = widget.currentFilters[Filter.vegetarian]!;
-    _veganFilterset = widget.currentFilters[Filter.vegan]!;
+    final activeFilters=ref.read(filtersprovider); //# This'll help to connect this filters to activefilters in providers , This is a functionality of riperpod package 
+    _gluttenFreeFilterset = activeFilters[Filter.glutenFree]!; //! Make sure to Connect activefilters like this and do not write widget.activefilters else it will give very bad errors 
+    _lactoseFreeFilterset = activeFilters[Filter.lactoseFree]!;
+    vegatarianFilterset = activeFilters[Filter.vegetarian]!;
+    _veganFilterset = activeFilters[Filter.vegan]!;
   }
 
   @override
@@ -35,13 +33,18 @@ class _FiltersScreenState extends State<FiltersScreen> {
       appBar: AppBar(
         title: const Text("Filters"),
       ),
-      body: PopScope( canPop: false,onPopInvoked: (bool didPop){ //# This popscope will Help in Providing filters Functionality , Manages back navigation gestures in App
-        if(didPop )return; Navigator.of(context).pop({
-          Filter.glutenFree:_gluttenFreeFilterset,
-         Filter.lactoseFree: _lactoseFreeFilterset,
-         Filter.vegetarian:vegatarianFilterset,
-         Filter.vegan:_veganFilterset,
+      body: PopScope( 
+        canPop:false ,
+        onPopInvoked: (didPop){ //# This popscope will Help in Providing filters Functionality , Manages back navigation gestures in App
+        if(didPop )return; 
+         ref.read(filtersprovider.notifier).setFilters(  //* To check the required modifications for this entire thing to happen make sure to check the first coimment in the course L-190
+        {
+        Filter.glutenFree: _gluttenFreeFilterset,
+        Filter.lactoseFree: _lactoseFreeFilterset,
+        Filter.vegetarian:vegatarianFilterset,
+        Filter.vegan:_veganFilterset,
         });
+        Navigator.of(context).pop();
       },
         child: Column(
           children: [

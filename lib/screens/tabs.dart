@@ -12,6 +12,7 @@ import 'package:meals/widgets/main_drawer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/providers/meals_provider.dart';
 /////import 'package:meals/screens/filters.dart';
+import'package:meals/providers/filters_provider.dart';
 //* This File Is responsible for Tab Based Navigation , Bottom Tabs bar 
 const kInitialFilters={ //? This is a Global List of Default Filter Values 
    Filter.glutenFree:false,
@@ -69,7 +70,7 @@ void _setScreen (String identifier) async { //# this void function helps in the 
 if(identifier=='filters'){
   
 final result = await Navigator.of(context).push<Map<Filter,bool>>(
-  MaterialPageRoute(builder: (ctx) => FiltersScreen(currentFilters: _selectedFilters,))
+  MaterialPageRoute(builder: (ctx) => const FiltersScreen())
 );
 
 setState(() {
