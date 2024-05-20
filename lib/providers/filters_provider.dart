@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meals/providers/meals_provider.dart';
 enum Filter{  //* This file is responsible for Filters , This is written with Riverpod Approach and helps to keep a track of the filters applied by the user 
   glutenFree,
   lactoseFree,
@@ -27,3 +28,23 @@ state = {
 
 
 final filtersprovider= StateNotifierProvider<FiltersNotifier,Map<Filter,bool>>((ref) => FiltersNotifier());
+final FilteredMealsProvider = Provider((ref) {
+  final meals = ref.watch(mealsProvider);
+  final activefilters=ref.watch(filtersprovider);
+  return meals.where((meal){
+   //# This Here will Perform the Actual Filter operation by Checking if we have turned on or off the selected filters then loading them selectively from dummydata //UPDATE: dummymeals.where updated by meals.where to Use Providers in this Scope 
+      if(activefilters[Filter.glutenFree]! &&  !meal.isGlutenFree){
+        return false;
+      }
+      if(activefilters[Filter.lactoseFree]! &&  !meal.isLactoseFree){
+        return false;
+      }
+       if(activefilters[Filter.vegetarian]! &&  !meal.isVegetarian){
+        return false;
+      }
+       if(activefilters[Filter.vegan]! &&  !meal.isVegan){
+        return false;
+      }
+      return true;
+    }).toList();
+  });

@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/models/meal.dart';
 import 'package:meals/providers/favourites_providers.dart';
 
-//* This File Contains the Meal Details Screen
+//* This File Contains the Meal Details Screen 
+//* This is now connected with Riverpod 
 class MealDetailsScreen extends ConsumerWidget {
   const MealDetailsScreen({super.key, required this.meal,});
   final Meal meal;
@@ -11,6 +12,8 @@ class MealDetailsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,WidgetRef ref ) {
+    final favoritemeals = ref.watch(favouriteMealsProvider);
+    final isfavourite=favoritemeals.contains(meal);
     return Scaffold(
         appBar: AppBar(
           title: Text(meal.title),
@@ -21,7 +24,7 @@ class MealDetailsScreen extends ConsumerWidget {
           
           
           
-          }, icon: Icon(Icons.star))], //! Very important-- Do  not forget to assign  onToggleFavourite here as we are calling it here like onToggleFavourite(meal)
+          }, icon: Icon(isfavourite?Icons.star:Icons.star_border))], ///* This'll display filled or  empty star icon based on meal favourite status 
         ), //# Added favourite Icon for tabs
         body: ListView(
           //? Displays Meal Details in ListView

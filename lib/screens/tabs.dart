@@ -69,7 +69,7 @@ void _setScreen (String identifier) async { //# this void function helps in the 
   Navigator.of(context).pop(); //? Helps to close drawer if Meals is selected while in home screen 
 if(identifier=='filters'){
   
-final result = await Navigator.of(context).push<Map<Filter,bool>>(
+final result  = await Navigator.of(context).push<Map<Filter,bool>>(
   MaterialPageRoute(builder: (ctx) => const FiltersScreen())
 );
 }}
@@ -78,22 +78,9 @@ final result = await Navigator.of(context).push<Map<Filter,bool>>(
  
   Widget build(BuildContext context) {
     final meals= ref.watch(mealsProvider); //* This ref is a part of Riverpod Package and it helps us to manage the state of the Widgets Effectively , This acts like a Listener 
+    final availableMeals=ref.watch(FilteredMealsProvider);
     final activefilters=ref.watch(filtersprovider);
-    final availableMeals=meals.where((meal) { //# This Here will Perform the Actual Filter operation by Checking if we have turned on or off the selected filters then loading them selectively from dummydata //UPDATE: dummymeals.where updated by meals.where to Use Providers in this Scope 
-      if(activefilters[Filter.glutenFree]! &&  !meal.isGlutenFree){
-        return false;
-      }
-      if(activefilters[Filter.lactoseFree]! &&  !meal.isLactoseFree){
-        return false;
-      }
-       if(activefilters[Filter.vegetarian]! &&  !meal.isVegetarian){
-        return false;
-      }
-       if(activefilters[Filter.vegan]! &&  !meal.isVegan){
-        return false;
-      }
-      return true;
-    }).toList();
+    
     Widget activepage =
            CategoriesScreen(availableMeals:availableMeals); //# This widget function makes sure we display categories screen if the choice of tab is default or zero we can say , make sure to add available meals property and assign available meals to it here 
 
